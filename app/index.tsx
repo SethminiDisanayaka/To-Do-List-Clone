@@ -1,9 +1,16 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, TextInput, Button, FlatList, Image, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, TextInput, Image, TouchableOpacity } from 'react-native';
 
 export default function App() {
   const [task, setTask] = useState('');
   const [tasks, setTasks] = useState([]);
+
+  const addTask = () => {
+    if (task.length > 0) {
+      setTasks([...tasks, task]);
+      setTask('');
+    }
+  };
 
   return (
     <View style={styles.container}>
@@ -16,25 +23,31 @@ export default function App() {
           <Image style={styles.tinyLogo3} source={require('../assets/images/dots.png')} />
         </View>
       </View>
+      
       <View style={styles.inputContainer}>
+        <Image style={styles.tinyLogo4} source={require('../assets/images/microphone.png')} />
         <TextInput
-          placeholder="Add Task"
+          placeholder="Enter quick task here"
           style={styles.input}
           value={task}
           onChangeText={text => setTask(text)}
         />
-        {/* <Button title="ADD" onPress={addTask} /> */}
       </View>
-      {/* <FlatList
-        data={tasks}
-        renderItem={itemData => (
-          <TouchableOpacity onPress={() => deleteTask(itemData.item.key)}>
-            <View style={styles.taskItem}>
-              <Text>{itemData.item.value}</Text>
-            </View>
-          </TouchableOpacity>
-        )}
-      /> */}
+      
+      <TouchableOpacity style={styles.addButton} onPress={addTask}>
+        <Image
+          source={require('../assets/images/addBtn.png')}
+          style={styles.addIcon}
+        />
+      </TouchableOpacity>
+      
+      <View style={styles.tasksContainer}>
+        {tasks.map((task, index) => (
+          <View key={index} style={styles.taskItem}>
+            <Text>{task}</Text>
+          </View>
+        ))}
+      </View>
     </View>
   );
 }
@@ -53,7 +66,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    backgroundColor:'#82C96D'
+    backgroundColor: '#82C96D',
+    padding: 10,
+    borderRadius: 5,
   },
   nametext: {
     fontSize: 23,
@@ -63,18 +78,21 @@ const styles = StyleSheet.create({
   },
   inputContainer: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: 20,
-    marginTop: 650,
-  },
-  input: {
-    width: '70%',
     borderBottomColor: 'black',
     borderBottomWidth: 1,
-    padding: 10,
-    backgroundColor: '#fff',
+    backgroundColor: '#A4C98E',
     borderRadius: 5,
+    padding: 5,
+    marginTop: 600, 
+  },
+  input: {
+    flex: 1,
+    padding: 10,
+    backgroundColor: '#A4C98E',
+  },
+  tasksContainer: {
+    marginTop: 20,
   },
   taskItem: {
     padding: 15,
@@ -99,5 +117,21 @@ const styles = StyleSheet.create({
   tinyLogo3: {
     width: 25,
     height: 25,
+  },
+  tinyLogo4: {
+    width: 15,
+    height: 15,
+    marginLeft: 10,
+  },
+  addButton: {
+    alignSelf: 'center',
+    marginTop:-100,
+    marginLeft:300,
+    backgroundColor: '#82C96D',
+    borderRadius: 5,
+  },
+  addIcon: {
+    width: 50,
+    height: 50,
   },
 });
