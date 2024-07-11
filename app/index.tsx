@@ -48,6 +48,14 @@ export default function App() {
           </View>
         ))}
       </View>
+      
+      <Image
+          source={require('../assets/images/beach.png')}
+          style={styles.mainIcon}
+        />
+        <Text style={styles.nametext2}> Nothing to do anything</Text>
+      
+      
     </View>
   );
 }
@@ -84,7 +92,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#A4C98E',
     borderRadius: 5,
     padding: 5,
-    marginTop: 600, 
+    marginTop: 650, 
   },
   input: {
     flex: 1,
@@ -134,4 +142,15 @@ const styles = StyleSheet.create({
     width: 50,
     height: 50,
   },
+  mainIcon:{
+   marginTop:-450,
+  marginLeft:150
+  },
+  nametext2:{
+    fontSize: 15,
+    color: '#FFFFFF',
+    fontFamily: 'monospace',
+   marginLeft:70
+  }
+  
 });
