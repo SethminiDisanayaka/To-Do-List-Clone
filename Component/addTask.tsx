@@ -1,16 +1,17 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, TextInput, Image, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import RNPickerSelect from 'react-native-picker-select';
 
-export default function index() {
+export default function Index() {
   const [task, setTask] = useState('');
-  const [tasks, setTasks] = useState([]);
-  const navigation = useNavigation();
+  const [tasks, setTasks] = useState<string[]>([]);
+  const [selectedValue, setSelectedValue] = useState<string | null>(null);
 
   const addTask = () => {
     if (task.length > 0) {
-     
-      
+      setTasks([...tasks, task]);
+      setTask('');
     }
   };
 
@@ -32,7 +33,7 @@ export default function index() {
           value={task}
           onChangeText={text => setTask(text)}
         />
-         <Image style={styles.tinyLogo4} source={require('../assets/images/microphone.png')} />
+        <Image style={styles.tinyLogo4} source={require('../assets/images/microphone.png')} />
       </View>
       
       <Text style={styles.text2}>Due Date</Text>
@@ -43,14 +44,35 @@ export default function index() {
           value={task}
           onChangeText={text => setTask(text)}
         />
-         <TouchableOpacity style={styles.dateButton} onPress={addTask}>
-        <Image
-          source={require('../assets/images/calender.png')}
-          style={styles.dateIcon}
-        />
-      </TouchableOpacity>
+        <TouchableOpacity onPress={addTask}>
+          <Image
+            source={require('../assets/images/calender.png')}
+            style={styles.dateIcon}
+          />
+        </TouchableOpacity>
       </View>
-      
+
+      <Text style={styles.label}>Add to List</Text>
+      <View style={styles.comboBoxContainer}>
+        <RNPickerSelect
+          onValueChange={(value: string | null) => setSelectedValue(value)}
+          items={[
+            { label: 'Item 1', value: 'item1' },
+            { label: 'Item 2', value: 'item2' },
+            { label: 'Item 3', value: 'item3' },
+          ]}
+          style={{
+            placeholder: {
+              color: 'black',
+              fontSize: 16,
+              fontFamily: 'monospace',
+            }
+          }}
+          placeholder={{ label: 'Select an item', value: null }}
+        />
+        
+      </View>
+
       <TouchableOpacity style={styles.addButton} onPress={addTask}>
         <Image
           source={require('../assets/images/Tick.png')}
@@ -65,8 +87,6 @@ export default function index() {
           </View>
         ))}
       </View>
-      
-
     </View>
   );
 }
@@ -75,7 +95,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#A4C98E',
-    paddingTop:50
+    paddingTop: 50,
+    paddingHorizontal: 10,
   },
   header: {
     marginBottom: 20,
@@ -93,7 +114,6 @@ const styles = StyleSheet.create({
     color: '#FFFFFF',
     fontFamily: 'monospace',
     marginHorizontal: 130,
-    
   },
   inputContainer: {
     flexDirection: 'row',
@@ -103,14 +123,13 @@ const styles = StyleSheet.create({
     backgroundColor: '#A4C98E',
     borderRadius: 5,
     padding: 5,
-    marginTop: 10, 
-    width:350,
+    marginTop: 10,
+    width: 350,
   },
   input: {
     flex: 1,
     padding: 10,
     backgroundColor: '#A4C98E',
-
   },
   tasksContainer: {
     marginTop: 20,
@@ -134,36 +153,53 @@ const styles = StyleSheet.create({
   },
   addButton: {
     alignSelf: 'center',
-    marginTop:350,
-    marginLeft:300,
+    marginTop: 300,
     backgroundColor: '#82C96D',
-    borderRadius: 5,
+    borderRadius: 25,
+    padding: 10,
+    marginLeft:250
   },
   addIcon: {
-    width: 50,
-    height: 50,
+    width: 30,
+    height: 30,
   },
-  mainIcon:{
-   marginTop:-450,
-  marginLeft:150
-  },
-  text1:{
+  text1: {
     fontSize: 15,
     color: 'black',
     fontFamily: 'monospace',
     marginTop: 10,
-    marginLeft:10
+    marginLeft: 10,
   },
-  text2:{
+  text2: {
     fontSize: 15,
     color: 'black',
     fontFamily: 'monospace',
-    marginTop: 80,
-    marginLeft:10
+    marginTop: 20,
+    marginLeft: 10,
   },
-  dateIcon:{
+  dateIcon: {
     width: 20,
     height: 20,
-  }
-  
+  },
+  label: {
+    fontSize: 15,
+    color: 'black',
+    fontFamily: 'monospace',
+    marginTop: 60,
+    marginLeft: 10,
+  },
+  comboBoxContainer: {
+    marginTop: 10,
+    marginHorizontal: 10,
+    fontFamily:'monospace',
+  backgroundColor:'#82C96D'
+  },
+  selectedText: {
+    fontSize: 15,
+    color: 'black',
+    fontFamily: 'monospace',
+    marginTop: 10,
+    marginLeft: 10,
+  },
 });
+
