@@ -51,4 +51,4 @@ Join our community of developers creating universal apps.
 
 ## Screenshos
 
-![Screenshot_20240711-234607](https://github.com/user-attachments/assets/6c5178b6-08e3-4012-8136-17ee3237e9d5)
+![Screenshot_20240712-100759](https://github.com/user-attachments/assets/9ebe646c-320e-4981-b786-166bac2d5aa2)
