@@ -6,8 +6,8 @@ import AddTask from '@/Component/addTask';
 export default function Index() {
   return (
     <View style={styles.container}>
-      <MainPage />
-      {/* <AddTask /> */}
+      {/* <MainPage /> */}
+      <AddTask />
     </View>
   );
 }
