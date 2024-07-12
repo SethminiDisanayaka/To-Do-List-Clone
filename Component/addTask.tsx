@@ -153,10 +153,9 @@ const styles = StyleSheet.create({
   },
   addButton: {
     alignSelf: 'center',
-    marginTop: 300,
+    marginTop: 450,
     backgroundColor: '#82C96D',
     borderRadius: 25,
-    padding: 10,
     marginLeft:250
   },
   addIcon: {
