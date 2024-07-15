@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, TextInput, Image, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { router } from 'expo-router';
 
 export default function index() {
   const [task, setTask] = useState('');
@@ -18,16 +19,16 @@ export default function index() {
     <View style={styles.container}>
       <View style={styles.header}>
         <View style={styles.row}>
-          <Image style={styles.arrowLogo} source={require('../assets/images/tickIcon.png')} />
+          <Image style={styles.arrowLogo} source={require('@/assets/images/tickIcon.png')} />
           <Text style={styles.nametext}>All Lists</Text>
-          <Image style={styles.tinyLogo1} source={require('../assets/images/downArrow.png')} />
-          <Image style={styles.tinyLogo2} source={require('../assets/images/search.png')} />
-          <Image style={styles.tinyLogo3} source={require('../assets/images/dots.png')} />
+          <Image style={styles.tinyLogo1} source={require('@/assets/images/downArrow.png')} />
+          <Image style={styles.tinyLogo2} source={require('@/assets/images/search.png')} />
+          <Image style={styles.tinyLogo3} source={require('@/assets/images/dots.png')} />
         </View>
       </View>
       
       <View style={styles.inputContainer}>
-        <Image style={styles.tinyLogo4} source={require('../assets/images/microphone.png')} />
+        <Image style={styles.tinyLogo4} source={require('@/assets/images/microphone.png')} />
         <TextInput
           placeholder="Enter quick task here"
           style={styles.input}
@@ -36,9 +37,9 @@ export default function index() {
         />
       </View>
       
-      <TouchableOpacity style={styles.addButton} onPress={addTask}>
+      <TouchableOpacity style={styles.addButton} onPress={() => navigation.navigate('addTask')} >
         <Image
-          source={require('../assets/images/addBtn.png')}
+          source={require('@/assets/images/addBtn.png')}
           style={styles.addIcon}
         />
       </TouchableOpacity>
@@ -52,7 +53,7 @@ export default function index() {
       </View>
       
       <Image
-          source={require('../assets/images/beach.png')}
+          source={require('@/assets/images/beach.png')}
           style={styles.mainIcon}
         />
         <Text style={styles.nametext2}> Nothing to do anything</Text>

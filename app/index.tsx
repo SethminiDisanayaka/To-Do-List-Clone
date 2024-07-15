@@ -1,23 +1,31 @@
-import { View, Text, StyleSheet } from 'react-native'
+import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
-import MainPage from '@/Component/mainPage';
-import AddTask from '@/Component/addTask';
-import TaskList from '@/Component/taskLists';
-import AddInBatchMode from '@/Component/AddInBatchMode'
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import mainPage from "@/app/tabs/mainPage"
+import addTask from "@/app/tabs/addTask"
 
-export default function Index() {
+const stack = createNativeStackNavigator()
+
+
+export default function index() {
   return (
-    <View style={styles.container}>
-      {/* <MainPage /> */}
-      {/* <AddTask /> */}
-      {/* <TaskList/> */}
-      <AddInBatchMode/>
-    </View>
-  );
+    <NavigationContainer independent={true}>
+    <stack.Navigator initialRouteName="Home">
+      <stack.Screen name="mainPage" component={mainPage} options={{ headerShown: false }} />
+      <stack.Screen name="addTask" component={addTask} options={{ headerShown: false }} />
+    </stack.Navigator>
+  </NavigationContainer>
+   
+  )
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1
+    flex: 1,
+    backgroundColor: "#000000",
+    alignItems: "center",
+    justifyContent: "center",
   },
-});
+
+})

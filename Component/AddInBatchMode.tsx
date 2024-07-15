@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, TextInput, Image, TouchableOpacity } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
 import RNPickerSelect from 'react-native-picker-select';
 
 export default function AddInBatchMode() {
@@ -113,7 +112,8 @@ const styles = StyleSheet.create({
     fontSize: 23,
     color: '#FFFFFF',
     fontFamily: 'monospace',
-    marginHorizontal: 130,
+    flex: 1,
+    marginLeft: 30, 
   },
   inputContainer: {
     flexDirection: 'row',

@@ -19,7 +19,7 @@ export default function Index() {
     <View style={styles.container}>
       <View style={styles.header}>
         <View style={styles.row}>
-          <Image style={styles.arrowLogo} source={require('../assets/images/backArrrow.png')} />
+          <Image style={styles.arrowLogo} source={require('@/assets/images/backArrrow.png')} />
           <Text style={styles.nametext}>New Task</Text>
         </View>
       </View>
@@ -33,7 +33,7 @@ export default function Index() {
           value={task}
           onChangeText={text => setTask(text)}
         />
-        <Image style={styles.tinyLogo4} source={require('../assets/images/microphone.png')} />
+        <Image style={styles.tinyLogo4} source={require('@/assets/images/microphone.png')} />
       </View>
       
       <Text style={styles.text2}>Due Date</Text>
@@ -46,7 +46,7 @@ export default function Index() {
         />
         <TouchableOpacity onPress={addTask}>
           <Image
-            source={require('../assets/images/calender.png')}
+            source={require('@/assets/images/calender.png')}
             style={styles.dateIcon}
           />
         </TouchableOpacity>
@@ -75,7 +75,7 @@ export default function Index() {
 
       <TouchableOpacity style={styles.addButton} onPress={addTask}>
         <Image
-          source={require('../assets/images/Tick.png')}
+          source={require('@/assets/images/Tick.png')}
           style={styles.addIcon}
         />
       </TouchableOpacity>
