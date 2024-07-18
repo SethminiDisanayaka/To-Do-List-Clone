@@ -1,17 +1,18 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, TextInput, Image, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, TextInput, Image, TouchableOpacity, Modal, Pressable } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { router } from 'expo-router';
+import { router, useRouter } from 'expo-router';
 
 export default function index() {
   const [task, setTask] = useState('');
   const [tasks, setTasks] = useState([]);
+  const [modalVisible, setModalVisible] = useState(false);
   const navigation = useNavigation();
 
   const addTask = () => {
     if (task.length > 0) {
-     
-      
+      setTasks([...tasks, task]);
+      setTask('');
     }
   };
 
@@ -23,7 +24,9 @@ export default function index() {
           <Text style={styles.nametext}>All Lists</Text>
           <Image style={styles.tinyLogo1} source={require('@/assets/images/downArrow.png')} />
           <Image style={styles.tinyLogo2} source={require('@/assets/images/search.png')} />
-          <Image style={styles.tinyLogo3} source={require('@/assets/images/dots.png')} />
+          <TouchableOpacity onPress={() => setModalVisible(true)}>
+            <Image style={styles.tinyLogo3} source={require('@/assets/images/dots.png')} />
+          </TouchableOpacity>
         </View>
       </View>
       
@@ -37,11 +40,8 @@ export default function index() {
         />
       </View>
       
-      <TouchableOpacity style={styles.addButton} onPress={() => navigation.navigate('addTask')} >
-        <Image
-          source={require('@/assets/images/addBtn.png')}
-          style={styles.addIcon}
-        />
+      <TouchableOpacity style={styles.addButton} onPress={() => navigation.navigate('addTask')}>
+        <Image source={require('@/assets/images/addBtn.png')} style={styles.addIcon} />
       </TouchableOpacity>
       
       <View style={styles.tasksContainer}>
@@ -52,13 +52,44 @@ export default function index() {
         ))}
       </View>
       
-      <Image
-          source={require('@/assets/images/beach.png')}
-          style={styles.mainIcon}
-        />
-        <Text style={styles.nametext2}> Nothing to do anything</Text>
-      
-      
+      <Image source={require('@/assets/images/beach.png')} style={styles.mainIcon} />
+      <Text style={styles.nametext2}> Nothing to do anything</Text>
+
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={modalVisible}
+        onRequestClose={() => setModalVisible(false)}
+      >
+        <View style={styles.centeredView}>
+          <View style={styles.modalView}>
+            <Pressable style={styles.modalItem} onPress={() => navigation.navigate('taskList')}>
+              <Text style={styles.modalText}>Task Lists</Text>
+            </Pressable>
+            <Pressable style={styles.modalItem} onPress={() => { /* handle Add in Batch Mode */ }}>
+              <Text style={styles.modalText}>Add in Batch Mode</Text>
+            </Pressable>
+            <Pressable style={styles.modalItem} onPress={() => { /* handle Remove Ads */ }}>
+              <Text style={styles.modalText}>Remove Ads</Text>
+            </Pressable>
+            <Pressable style={styles.modalItem} onPress={() => { /* handle More Apps */ }}>
+              <Text style={styles.modalText}>More Apps</Text>
+            </Pressable>
+            <Pressable style={styles.modalItem} onPress={() => { /* handle Send feedback */ }}>
+              <Text style={styles.modalText}>Send feedback</Text>
+            </Pressable>
+            <Pressable style={styles.modalItem} onPress={() => { /* handle Follow us */ }}>
+              <Text style={styles.modalText}>Follow us</Text>
+            </Pressable>
+            <Pressable style={styles.modalItem} onPress={() => { /* handle Invite friends */ }}>
+              <Text style={styles.modalText}>Invite friends to the app</Text>
+            </Pressable>
+            <Pressable style={styles.modalItem} onPress={() => { /* handle Settings */ }}>
+              <Text style={styles.modalText}>Settings</Text>
+            </Pressable>
+          </View>
+        </View>
+      </Modal>
     </View>
   );
 }
@@ -153,6 +184,33 @@ const styles = StyleSheet.create({
     color: 'black',
     fontFamily: 'monospace',
    marginLeft:70
-  }
-  
+  },
+  centeredView: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 22,
+  },
+  modalView: {
+    margin: 20,
+    backgroundColor: 'white',
+    borderRadius: 20,
+    padding: 35,
+    alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
+  },
+  modalItem: {
+    padding: 10,
+  },
+  modalText: {
+    fontSize: 16,
+    color: 'black',
+  },
 });

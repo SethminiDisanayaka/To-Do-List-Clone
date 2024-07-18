@@ -14,6 +14,12 @@ export default function RootLayout() {
       options={{
         headerShown: false,
       }} />
+
+<Stack.Screen name="taskList"
+      options={{
+        headerShown: false,
+      }} />
+
     </Stack>
     
   );

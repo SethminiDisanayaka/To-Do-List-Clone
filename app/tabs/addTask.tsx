@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, TextInput, Image, TouchableOpacity } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
 import RNPickerSelect from 'react-native-picker-select';
+import { useNavigation } from '@react-navigation/native';
 
 export default function Index() {
+  const navigation = useNavigation();
   const [task, setTask] = useState('');
   const [tasks, setTasks] = useState<string[]>([]);
   const [selectedValue, setSelectedValue] = useState<string | null>(null);
@@ -14,12 +15,19 @@ export default function Index() {
       setTask('');
     }
   };
-
+ 
   return (
     <View style={styles.container}>
       <View style={styles.header}>
         <View style={styles.row}>
-          <Image style={styles.arrowLogo} source={require('@/assets/images/backArrrow.png')} />
+
+          <TouchableOpacity style={styles.arrowLogo} onPress={() => navigation.navigate('mainPage')}>
+            <Image
+              source={require('@/assets/images/backArrrow.png')}
+              style={styles.arrowIcon}
+            />
+          </TouchableOpacity>
+
           <Text style={styles.nametext}>New Task</Text>
         </View>
       </View>
@@ -70,7 +78,6 @@ export default function Index() {
           }}
           placeholder={{ label: 'Select an item', value: null }}
         />
-        
       </View>
 
       <TouchableOpacity style={styles.addButton} onPress={addTask}>
@@ -142,7 +149,7 @@ const styles = StyleSheet.create({
     marginVertical: 10,
     borderRadius: 5,
   },
-  arrowLogo: {
+  arrowIcon: {
     width: 25,
     height: 25,
   },

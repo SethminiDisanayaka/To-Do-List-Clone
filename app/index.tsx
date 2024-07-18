@@ -4,6 +4,9 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import mainPage from "@/app/tabs/mainPage"
 import addTask from "@/app/tabs/addTask"
+import taskList from "@/app/tabs/taskLists"
+import AllList from "@/Component/AllList"
+import AddInBatchMode from '@/Component/AddInBatchMode';
 
 const stack = createNativeStackNavigator()
 
@@ -14,18 +17,18 @@ export default function index() {
     <stack.Navigator initialRouteName="Home">
       <stack.Screen name="mainPage" component={mainPage} options={{ headerShown: false }} />
       <stack.Screen name="addTask" component={addTask} options={{ headerShown: false }} />
+      <stack.Screen name="taskList" component={taskList} options={{ headerShown: false }} />
     </stack.Navigator>
   </NavigationContainer>
-   
+
   )
 }
 
-const styles = StyleSheet.create({
-  container: {
+const styles =StyleSheet.create({
+  container:{
     flex: 1,
-    backgroundColor: "#000000",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-
-})
+    backgroundColor: "#fff",
+    alignItems:"center",
+    justifyContent:"center"
+  }
+  })
