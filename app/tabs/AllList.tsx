@@ -19,11 +19,11 @@ return (
     <View style={styles.container}>
       <View style={styles.header}>
         <View style={styles.row}>
-          <Image style={styles.arrowLogo} source={require('../assets/images/tickIcon.png')} />
+          <Image style={styles.arrowLogo} source={require('@/assets/images/tickIcon.png')} />
           <Text style={styles.nametext}>All Lists</Text>
-          <Image style={styles.tinyLogo1} source={require('../assets/images/downArrow.png')} />
-          <Image style={styles.tinyLogo2} source={require('../assets/images/search.png')} />
-          <Image style={styles.tinyLogo3} source={require('../assets/images/dots.png')} />
+          <Image style={styles.tinyLogo1} source={require('@/assets/images/downArrow.png')} />
+          <Image style={styles.tinyLogo2} source={require('@/assets/images/search.png')} />
+          <Image style={styles.tinyLogo3} source={require('@/assets/images/dots.png')} />
         </View>
       </View>
 

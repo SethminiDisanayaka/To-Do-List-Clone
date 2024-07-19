@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 export default function TaskList() {
+  const navigation = useNavigation();
   const [task, setTask] = useState('');
   const [tasks, setTasks] = useState<string[]>([]);
   const [selectedValue, setSelectedValue] = useState<string | null>(null);
@@ -16,7 +18,12 @@ export default function TaskList() {
     <View style={styles.container}>
       <View style={styles.header}>
         <View style={styles.row}>
-          <Image style={styles.arrowLogo} source={require('@/assets/images/backArrrow.png')} />
+        <TouchableOpacity onPress={() => navigation.navigate('mainPage')}>
+            <Image
+              source={require('@/assets/images/backArrrow.png')}
+              style={styles.arrowIcon}
+            />
+          </TouchableOpacity>
           <Text style={styles.nametext}>Task Lists</Text>
           <Image style={styles.arrowLogo} source={require('@/assets/images/list.png')} />
         </View>
@@ -91,5 +98,9 @@ const styles = StyleSheet.create({
     height: 25,
     marginLeft: 320,
     marginTop: -22,
+  },
+  arrowIcon: {
+    width: 25,
+    height: 25,
   },
 });

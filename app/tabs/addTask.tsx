@@ -21,7 +21,7 @@ export default function Index() {
       <View style={styles.header}>
         <View style={styles.row}>
 
-          <TouchableOpacity style={styles.arrowLogo} onPress={() => navigation.navigate('mainPage')}>
+          <TouchableOpacity onPress={() => navigation.navigate('mainPage')}>
             <Image
               source={require('@/assets/images/backArrrow.png')}
               style={styles.arrowIcon}

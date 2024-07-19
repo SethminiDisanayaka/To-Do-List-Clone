@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, TextInput, Image, TouchableOpacity } from 'react-native';
 import RNPickerSelect from 'react-native-picker-select';
+import { useNavigation } from '@react-navigation/native';
 
 export default function AddInBatchMode() {
+  const navigation = useNavigation();
   const [task, setTask] = useState('');
   const [tasks, setTasks] = useState<string[]>([]);
   const [selectedValue, setSelectedValue] = useState<string | null>(null);
@@ -18,7 +20,12 @@ export default function AddInBatchMode() {
     <View style={styles.container}>
       <View style={styles.header}>
         <View style={styles.row}>
-          <Image style={styles.arrowLogo} source={require('../assets/images/backArrrow.png')} />
+        <TouchableOpacity onPress={() => navigation.navigate('mainPage')}>
+            <Image
+              source={require('@/assets/images/backArrrow.png')}
+              style={styles.arrowIcon}
+            />
+          </TouchableOpacity>
           <Text style={styles.nametext}>Add in batch Mode</Text>
         </View>
       </View>
@@ -32,7 +39,7 @@ export default function AddInBatchMode() {
           value={task}
           onChangeText={text => setTask(text)}
         />
-        <Image style={styles.tinyLogo4} source={require('../assets/images/microphone.png')} />
+        <Image style={styles.tinyLogo4} source={require('@/assets/images/microphone.png')} />
       </View>
       
       <Text style={styles.text2}>Due Date</Text>
@@ -45,7 +52,7 @@ export default function AddInBatchMode() {
         />
         <TouchableOpacity onPress={addTask}>
           <Image
-            source={require('../assets/images/calender.png')}
+            source={require('@/assets/images/calender.png')}
             style={styles.dateIcon}
           />
         </TouchableOpacity>
@@ -74,7 +81,7 @@ export default function AddInBatchMode() {
 
       <TouchableOpacity style={styles.addButton} onPress={addTask}>
         <Image
-          source={require('../assets/images/Tick.png')}
+          // source={require('@ /assets/images/Tick.png')}
           style={styles.addIcon}
         />
       </TouchableOpacity>
@@ -199,6 +206,10 @@ const styles = StyleSheet.create({
     fontFamily: 'monospace',
     marginTop: 10,
     marginLeft: 10,
+  },
+  arrowIcon: {
+    width: 25,
+    height: 25,
   },
 });
 

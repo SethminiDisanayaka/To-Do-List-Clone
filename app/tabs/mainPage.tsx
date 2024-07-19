@@ -66,7 +66,7 @@ export default function index() {
             <Pressable style={styles.modalItem} onPress={() => navigation.navigate('taskList')}>
               <Text style={styles.modalText}>Task Lists</Text>
             </Pressable>
-            <Pressable style={styles.modalItem} onPress={() => { /* handle Add in Batch Mode */ }}>
+            <Pressable style={styles.modalItem} onPress={() => navigation.navigate('AddInBatchMode')}>
               <Text style={styles.modalText}>Add in Batch Mode</Text>
             </Pressable>
             <Pressable style={styles.modalItem} onPress={() => { /* handle Remove Ads */ }}>
