@@ -10,15 +10,22 @@ export default function TaskList() {
 
   const addTask = () => {
     if (task.length > 0) {
-      // Add task logic here
+    
     }
+  };
+
+  const navigateToMainPage = () => {
+    navigation.reset({
+      index: 0,
+      routes: [{ name: 'mainPage' }],
+    });
   };
 
   return (
     <View style={styles.container}>
       <View style={styles.header}>
         <View style={styles.row}>
-        <TouchableOpacity onPress={() => navigation.navigate('mainPage')}>
+          <TouchableOpacity onPress={navigateToMainPage}>
             <Image
               source={require('@/assets/images/backArrrow.png')}
               style={styles.arrowIcon}

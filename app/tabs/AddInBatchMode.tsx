@@ -16,11 +16,19 @@ export default function AddInBatchMode() {
     }
   };
 
+  const navigateToMainPage = () => {
+    navigation.reset({
+      index: 0,
+      routes: [{ name: 'mainPage' }],
+    });
+  };
+
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>
         <View style={styles.row}>
-        <TouchableOpacity onPress={() => navigation.navigate('mainPage')}>
+        <TouchableOpacity onPress={navigateToMainPage}>
             <Image
               source={require('@/assets/images/backArrrow.png')}
               style={styles.arrowIcon}
@@ -81,7 +89,7 @@ export default function AddInBatchMode() {
 
       <TouchableOpacity style={styles.addButton} onPress={addTask}>
         <Image
-          // source={require('@ /assets/images/Tick.png')}
+          source={require('@/assets/images/Tick.png')}
           style={styles.addIcon}
         />
       </TouchableOpacity>

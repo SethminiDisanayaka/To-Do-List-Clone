@@ -5,8 +5,9 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import mainPage from "@/app/tabs/mainPage"
 import addTask from "@/app/tabs/addTask"
 import taskList from "@/app/tabs/taskLists"
-import AllList from "@/app/tabs/AllList"
 import AddInBatchMode from '@/app/tabs/AddInBatchMode';
+import AllList from '@/app/tabs/AllList';
+import settings from '@/app/tabs/settings';
 
 const stack = createNativeStackNavigator()
 
@@ -19,6 +20,9 @@ export default function index() {
       <stack.Screen name="addTask" component={addTask} options={{ headerShown: false }} />
       <stack.Screen name="taskList" component={taskList} options={{ headerShown: false }} />
       <stack.Screen name="AddInBatchMode" component={AddInBatchMode} options={{ headerShown: false }} />
+      <stack.Screen name="AllList" component={AllList} options={{ headerShown: false }} />
+      <stack.Screen name="settings" component={settings} options={{ headerShown: false }} />
+
     </stack.Navigator>
   </NavigationContainer>
 

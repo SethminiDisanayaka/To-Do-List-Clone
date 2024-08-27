@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, TextInput, Image, TouchableOpacity, Modal, Pressable } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { router, useRouter } from 'expo-router';
 
 export default function index() {
   const [task, setTask] = useState('');
@@ -11,8 +10,7 @@ export default function index() {
 
   const addTask = () => {
     if (task.length > 0) {
-      setTasks([...tasks, task]);
-      setTask('');
+
     }
   };
 
@@ -84,7 +82,7 @@ export default function index() {
             <Pressable style={styles.modalItem} onPress={() => { /* handle Invite friends */ }}>
               <Text style={styles.modalText}>Invite friends to the app</Text>
             </Pressable>
-            <Pressable style={styles.modalItem} onPress={() => { /* handle Settings */ }}>
+            <Pressable style={styles.modalItem} onPress={() => navigation.navigate('settings')}>
               <Text style={styles.modalText}>Settings</Text>
             </Pressable>
           </View>
