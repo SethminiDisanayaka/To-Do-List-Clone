@@ -1,16 +1,26 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, TextInput, Image, TouchableOpacity, Modal, Pressable } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, NavigationProp } from '@react-navigation/native';
 
-export default function index() {
+
+type RootStackParamList = {
+  addTask: undefined; 
+  taskList: undefined;
+  AddInBatchMode: undefined;
+  settings: undefined;
+};
+
+export default function Index() {
   const [task, setTask] = useState('');
-  const [tasks, setTasks] = useState([]);
+  const [tasks, setTasks] = useState<string[]>([]); 
   const [modalVisible, setModalVisible] = useState(false);
-  const navigation = useNavigation();
+
+  const navigation = useNavigation<NavigationProp<RootStackParamList>>();
 
   const addTask = () => {
     if (task.length > 0) {
-
+      setTasks([...tasks, task]);
+      setTask('');
     }
   };
 
@@ -27,7 +37,7 @@ export default function index() {
           </TouchableOpacity>
         </View>
       </View>
-      
+
       <View style={styles.inputContainer}>
         <Image style={styles.tinyLogo4} source={require('@/assets/images/microphone.png')} />
         <TextInput
@@ -37,7 +47,7 @@ export default function index() {
           onChangeText={text => setTask(text)}
         />
       </View>
-      
+
       <TouchableOpacity style={styles.addButton} onPress={() => navigation.navigate('addTask')}>
         <Image source={require('@/assets/images/addBtn.png')} style={styles.addIcon} />
       </TouchableOpacity>
@@ -49,9 +59,9 @@ export default function index() {
           </View>
         ))}
       </View>
-      
+
       <Image source={require('@/assets/images/beach.png')} style={styles.mainIcon} />
-      <Text style={styles.nametext2}> Nothing to do anything</Text>
+      <Text style={styles.nametext2}>Nothing to do anything</Text>
 
       <Modal
         animationType="slide"
@@ -78,9 +88,6 @@ export default function index() {
             </Pressable>
             <Pressable style={styles.modalItem} onPress={() => { /* handle Follow us */ }}>
               <Text style={styles.modalText}>Follow us</Text>
-            </Pressable>
-            <Pressable style={styles.modalItem} onPress={() => { /* handle Invite friends */ }}>
-              <Text style={styles.modalText}>Invite friends to the app</Text>
             </Pressable>
             <Pressable style={styles.modalItem} onPress={() => navigation.navigate('settings')}>
               <Text style={styles.modalText}>Settings</Text>

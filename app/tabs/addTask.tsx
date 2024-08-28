@@ -1,13 +1,19 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, TextInput, Image, TouchableOpacity } from 'react-native';
 import RNPickerSelect from 'react-native-picker-select';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, NavigationProp } from '@react-navigation/native';
+
+
+type RootStackParamList = {
+  mainPage: undefined; 
+};
 
 export default function Index() {
-  const navigation = useNavigation();
   const [task, setTask] = useState('');
-  const [tasks, setTasks] = useState<string[]>([]);
+  const [tasks, setTasks] = useState<string[]>([]); 
   const [selectedValue, setSelectedValue] = useState<string | null>(null);
+
+  const navigation = useNavigation<NavigationProp<RootStackParamList>>();
 
   const addTask = () => {
     if (task.length > 0) {
